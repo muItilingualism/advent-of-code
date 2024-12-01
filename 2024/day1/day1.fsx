@@ -21,4 +21,27 @@ let diffs = List.map diff sortedPairList;;
 
 let sum = List.sum diffs;;
 
-printfn "Result: %d" sum
+printfn "Part 1 result: %d" sum
+
+let rec simScoreH (x: int) (ys: int list) (acc: int) : int =
+    match ys with
+    | [] -> x*acc
+    | y::tail when x=y -> simScoreH x tail (acc+1)
+    | _::tail -> simScoreH x tail acc;;
+
+let simScore x ys = simScoreH x ys 0;;
+
+let rec calculateSim (xs: int list) (ys: int list): int =
+    match xs with
+    | [] -> 0
+    | x::tail -> (simScore x ys) + calculateSim tail ys;;
+
+
+let simSum pairList = 
+    let first, second = List.unzip pairList
+    let firstInt = List.map int first
+    let secondInt = List.map int second
+    calculateSim firstInt secondInt;;
+
+let simSumRes = simSum sortedPairList;;
+printfn "Part2 result: %d" simSumRes;;

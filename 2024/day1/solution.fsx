@@ -1,4 +1,4 @@
-let input = System.IO.File.ReadLines("day1/input.txt");;
+let input = System.IO.File.ReadLines(__SOURCE_DIRECTORY__ + "/input.txt");;
 
 let splitBySpaces (line: string): string * string = 
     let splitLine = line.Split("   ") 
@@ -44,4 +44,4 @@ let simSum pairList =
     calculateSim firstInt secondInt;;
 
 let simSumRes = simSum sortedPairList;;
-printfn "Part2 result: %d" simSumRes;;
+printfn "Part 2 result: %d" simSumRes;;
